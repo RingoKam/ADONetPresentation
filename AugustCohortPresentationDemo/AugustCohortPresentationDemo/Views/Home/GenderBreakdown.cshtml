@@ -1,0 +1,36 @@
+﻿@model AugustCohortPresentationDemo.Models.GenderBreakdownVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GenderBreakdown</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-condensed table-striped" Style="width: 50%">
+
+            <tr class="row">
+                <th class="col-sm-2">Name</th>
+                <th class="col-sm-2">Gender</th>
+            </tr>
+
+            @for (int i = 0; i < Model.Name.Count; i++)
+            {
+                <tr class="row" style="color:@(Model.Gender[i]=="Male" ? "blue": "purple")">
+                    <td class="col-sm-2"> @Model.Name[i] </td>
+                    <td class="col-sm-2"> @Model.Gender[i] </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

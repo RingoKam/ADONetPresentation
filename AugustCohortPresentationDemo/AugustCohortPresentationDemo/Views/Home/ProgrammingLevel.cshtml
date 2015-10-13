@@ -1,0 +1,39 @@
+﻿@model AugustCohortPresentationDemo.Models.ProgrammingLevelVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProgrammingLevel</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table table-condensed table-striped" Style="width: 75%">
+        
+            <tr class="row">
+                <th class="col-sm-3">Programming Level!?</th>
+                <th class="col-sm-2">Status</th>
+                <th class="col-sm-2">Name</th>
+            </tr>
+        
+        @for (int i = 0; i < Model.Name.Count; i++)
+            {
+            <tr class="row">
+                <td class="col-sm-3"> @Model.Level[i] </td>
+                <td class="col-sm-2"> @Model.Status[i] </td>
+                <td class="col-sm-2"> @Model.Name[i] </td>
+            </tr>
+        }
+    </table>
+
+</div>
+</body>
+</html>

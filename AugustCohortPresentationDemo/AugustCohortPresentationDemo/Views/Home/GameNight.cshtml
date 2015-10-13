@@ -1,0 +1,36 @@
+﻿@model AugustCohortPresentationDemo.Models.GameNightVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GameNight</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div>
+        <table class="table table-condensed table-striped table-bordered" Style="width: 50%">
+            <tr>
+                <th> Name </th>
+                <th> Attend </th>
+            </tr>
+            <tbody>
+                @for (int i = 0; i < @Model.Name.Count; i++)
+                {
+                    <tr Class="@(Model.Attend[i]=="YES"?"success":"warning")">
+                        <td> @Model.Name[i] </td>
+                        <td> @Model.Attend[i] </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
