@@ -13,27 +13,96 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
-<div class="container">
-    <table class="table table-condensed table-striped" Style="width: 75%">
-        
-            <tr class="row">
-                <th class="col-sm-3">Programming Level!?</th>
-                <th class="col-sm-2">Status</th>
-                <th class="col-sm-2">Name</th>
-            </tr>
-        
-        @for (int i = 0; i < Model.Name.Count; i++)
-            {
-            <tr class="row">
-                <td class="col-sm-3"> @Model.Level[i] </td>
-                <td class="col-sm-2"> @Model.Status[i] </td>
-                <td class="col-sm-2"> @Model.Name[i] </td>
-            </tr>
-        }
-    </table>
+    <div class="col-lg-offset-1 col-lg-3">
+        <table class="table table-condensed table-striped" Style="width: 75%">
 
-</div>
+            <tr class="row">
+                <th class="col-sm-4">Programming Level!?</th>
+                <th class="col-sm-4">Status</th>
+                <th class="col-sm-4">Name</th>
+            </tr>
+
+            @for (int i = 0; i < Model.Name.Count; i++)
+            {
+                <tr class="row">
+                    <td class="col-sm-4"> @Model.Level[i] </td>
+                    <td class="col-sm-4"> @Model.Status[i] </td>
+                    <td class="col-sm-4"> @Model.Name[i] </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <div id="container" class="col-lg-6" style="width: 60%; height: 400px;">
+        <script>
+            $(function () {
+                $('#container').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Programming Level!?'
+                    },
+                    subtitle: {
+                        text: 'C# August Cohort'
+                    },
+                    xAxis: {
+                        categories: ['Beginner', 'Pro'],
+                        title: {
+                            text: null
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Programming Level',
+                            align: 'high'
+                        },
+                        labels: {
+                            overflow: 'justify'
+                        }
+                    },
+                    //tooltip: {
+                    //    valueSuffix: ''
+                    //},
+                    plotOptions: {
+                        bar: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -40,
+                        y: 80,
+                        floating: true,
+                        borderWidth: 1,
+                        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                        shadow: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                        name: 'Skill Level',
+                        data: [500,9001]
+                    //}, {
+                    //    name: 'Year 1900',
+                    //    data: [133, 156, 947, 408, 6]
+                    //}, {
+                    //    name: 'Year 2012',
+                    //    data: [1052, 954, 4250, 740, 38]
+                    }]
+                });
+            });
+        </script>
+    </div>
 </body>
 </html>

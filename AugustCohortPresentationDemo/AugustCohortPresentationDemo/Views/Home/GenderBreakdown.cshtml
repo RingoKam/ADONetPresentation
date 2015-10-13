@@ -13,24 +13,74 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
-    <div class="container">
-        <table class="table table-condensed table-striped" Style="width: 50%">
+
+<div class="col-lg-offset-1 col-lg-2">
+        <table class="table table-condensed table-striped" Style="width: 100%">
 
             <tr class="row">
-                <th class="col-sm-2">Name</th>
-                <th class="col-sm-2">Gender</th>
+                <th class="col-sm-12">Name</th>
+                <th class="col-sm-12">Gender</th>
             </tr>
 
             @for (int i = 0; i < Model.Name.Count; i++)
             {
                 <tr class="row" style="color:@(Model.Gender[i]=="Male" ? "blue": "purple")">
-                    <td class="col-sm-2"> @Model.Name[i] </td>
-                    <td class="col-sm-2"> @Model.Gender[i] </td>
+                    <td class="col-sm-12"> @Model.Name[i] </td>
+                    <td class="col-sm-12"> @Model.Gender[i] </td>
                 </tr>
             }
         </table>
+    </div>
+        <div id="container" class="col-lg-6" style="width: 50%; height: 400px;">
+            <script>
+                $(function () {
+                    $('#container').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'August C# Gender Breakdown'
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.0f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage: .0f} %',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                }
+                            }
+                        },
+                        series: [{
+                            name: "Gender",
+                            colorByPoint: true,
+                            data: [{
+                                name: "Male",
+                                y: 78.9
+                            }, {
+                                name: "Female",
+                                y: 21,
+                                sliced: true,
+                                selected: true
+                            }]
+                        }]
+                    });
+                });
+            </script>
+        </div>
     </div>
 </body>
 </html>

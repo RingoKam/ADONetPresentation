@@ -13,9 +13,12 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+
 </head>
 <body>
-    <div>
+    <div class="col-lg-offset-1 col-lg-3">
         <table class="table table-condensed table-striped table-bordered" Style="width: 75%">
             <thead>
                 <tr>
@@ -33,6 +36,67 @@
                 </tr>
             }
         </table>
+    </div>
+
+    <div id="container" class="col-lg-6" style="width: 50%; height: 400px;">
+        <script>
+            $(function () {
+                $('#container').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Residential Status'
+                    },
+                    subtitle: {
+                        text: 'August C# Cohort'
+                    },
+                    xAxis: {
+                        categories: [
+                            'August Cohort'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Number of Cohort Members'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.0f} </b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Home',
+                        data: [12]
+
+                    }, {
+                        name: '401 Loft',
+                        data: [5]
+
+                    }, {
+                        name: 'Motel',
+                        data: [1]
+
+                    }, {
+                        name: 'AirBnB',
+                        data: [1]
+                    }]
+                });
+            });
+        </script>
+
     </div>
 </body>
 </html>
